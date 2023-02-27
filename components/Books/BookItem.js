@@ -74,7 +74,7 @@ const BookItem = ({
           </Stack>
           <Stack height={38} direction="row" alignItems="center">
             <Typography mr={3} className="lato">
-              ${price}
+              S/ {price}
             </Typography>
             {alreadyInCart ? (
               <QtyManager
