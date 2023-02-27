@@ -67,11 +67,11 @@ const BookItem = ({
             </Typography>
           </Box>
           <Typography variant="body2" className="lato" fontStyle="italic">
-            Genre: {genre}
+            Tipo: {genre}
           </Typography>
-          <Stack color="#C99100" direction="row">
+          {/*<Stack color="#C99100" direction="row">
             <StarIcon /> <Typography className="lato">{stars}</Typography>
-          </Stack>
+          </Stack>*/}
           <Stack height={38} direction="row" alignItems="center">
             <Typography mr={3} className="lato">
               S/ {price}
