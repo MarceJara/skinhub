@@ -16,6 +16,8 @@ const BookItem = ({
   image,
   price,
   stars,
+  skinType,
+  description,
   alreadyInCart,
   qty,
   increaseQty,
@@ -66,8 +68,11 @@ const BookItem = ({
               {name}
             </Typography>
           </Box>
-          <Typography variant="body2" className="lato" fontStyle="italic">
+          <Typography variant="body2" className="lato" fontStyle="bold">
             Tipo: {genre}
+          </Typography>
+          <Typography variant="body2" className="lato" fontStyle="bold">
+            Piel: {skinType}
           </Typography>
           {/*<Stack color="#C99100" direction="row">
             <StarIcon /> <Typography className="lato">{stars}</Typography>
