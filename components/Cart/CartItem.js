@@ -23,7 +23,7 @@ const CartItem = ({ book, qty, increaseQty, decreaseQty }) => {
         />
       </Stack>
       <Typography className="lato" ml="auto">
-        ${(book.price * qty).toFixed(2)}
+        S/ {(book.price * qty).toFixed(2)}
       </Typography>
     </Stack>
   );

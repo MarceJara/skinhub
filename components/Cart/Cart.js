@@ -69,7 +69,7 @@ const Cart = ({
         <Divider />
         <Stack direction="row" justifyContent="space-between">
           <Typography className="lato">Total</Typography>
-          <Typography className="lato">${totalAmt.toFixed(2)}</Typography>
+          <Typography className="lato">S/ {totalAmt.toFixed(2)}</Typography>
         </Stack>
         <Button
           disabled={!booksInCart.length}
