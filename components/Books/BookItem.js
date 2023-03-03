@@ -132,11 +132,36 @@ const BookItem = ({
             <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
               {name}
             </BootstrapDialogTitle>
+
             <DialogContent dividers>
-              <Typography gutterBottom>
-                {description}
-              </Typography>
+              <Grid container spacing={4}
+                wrap="nowrap"
+                direction="row"
+                justifyContent="center"
+                alignItems="center">
+                <Grid item xs={6}>
+                  <Stack
+                    sx={(theme) => ({
+                      background: `url(${image})`,
+                      ...theme.mixins.bookCover,
+                      width: 56 * 5,
+                      height: 83 * 5,
+
+                    })}
+                  />
+                  <Stack
+                  />
+                </Grid>
+                <Grid item xs={6}>
+
+                  <Typography wrap variant="body2" align="justify">
+                    {description}
+                  </Typography>
+                </Grid>
+
+              </Grid>
             </DialogContent>
+
           </BootstrapDialog>
 
         </Stack>
