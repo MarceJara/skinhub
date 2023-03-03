@@ -1,3 +1,4 @@
+//MAIN DEPENDENCIES
 import {
   Button,
   IconButton,
@@ -7,9 +8,65 @@ import {
   Box,
 } from "@mui/material";
 import AddToCartIcon from "@mui/icons-material/AddShoppingCart";
-import StarIcon from "@mui/icons-material/Star";
 import QtyManager from "../Cart/QtyManager";
+import StarIcon from "@mui/icons-material/Star";
 
+//ADD DEPENDENCIES
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import CloseIcon from '@mui/icons-material/Close';
+
+//This function is a styled-component that customizes the padding 
+//of the content and actions of a Material UI dialog based on the 
+//provided theme.
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
+
+//This code defines a custom BootstrapDialogTitle component that 
+//renders a DialogTitle with additional close button functionality. 
+//It destructures the onClose and children props, and applies custom 
+//styles using sx property from Material-UI.
+function BootstrapDialogTitle(props) {
+  const { children, onClose, ...other } = props;
+
+  return (
+    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+      {children}
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          onClick={onClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </DialogTitle>
+  );
+}
+
+BootstrapDialogTitle.propTypes = {
+  children: PropTypes.node,
+  onClose: PropTypes.func.isRequired,
+};
+
+//Main components
 const BookItem = ({
   name,
   genre,
@@ -23,6 +80,14 @@ const BookItem = ({
   increaseQty,
   decreaseQty,
 }) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Grid item xs={12} lg={4}>
       <Stack
@@ -55,6 +120,25 @@ const BookItem = ({
             height={120}
             borderRadius={2}
           />
+
+          <Button variant="outlined" onClick={handleClickOpen}>
+            Más detalle
+          </Button>
+          <BootstrapDialog
+            onClose={handleClose}
+            aria-labelledby="customized-dialog-title"
+            open={open}
+          >
+            <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+              {name}
+            </BootstrapDialogTitle>
+            <DialogContent dividers>
+              <Typography gutterBottom>
+                {description}
+              </Typography>
+            </DialogContent>
+          </BootstrapDialog>
+
         </Stack>
         {/* right stack */}
         <Stack position="relative" top={-25} spacing={1}>
